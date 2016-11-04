@@ -134,7 +134,7 @@ module Expectacle
         write_and_logging 'Send username: ', embed_user_name
       when /#{@prompt[:command2]}/, /#{@prompt[:command1]}/
         exec_by_mode(prompt)
-      when /#{@prompt[:yn][:match]}/, /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@console_server_return}/
+      when /#{@prompt[:yn][:match]}/ , /#{@prompt[:sub2]}/ , /#{@prompt[:sub1]}/, /#{@prompt[:console_server_return]}/
         exec_by_sub_prompt(prompt)
       else
         @logger.error "Unknown prompt #{prompt}"
