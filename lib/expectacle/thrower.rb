@@ -111,8 +111,16 @@ module Expectacle
       case prompt
       when /#{@prompt[:yn][:match]}/
         # it must match before sub_prompt
-        write_and_logging 'Send yes: ', @prompt[:yn][:y], false, true
-      when /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@console_server_return}/
+        reply = case @commands.shift
+                when 'n', 'no' then
+                  :n
+                when 'y', 'yes' then
+                  :y
+                else
+                  :y
+                end
+        write_and_logging 'Send yes: ', @prompt[:yn][reply], false, true
+      when /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@prompt[:console_server_return]}/
         write_and_logging 'Send return: ', ''
       end
 
