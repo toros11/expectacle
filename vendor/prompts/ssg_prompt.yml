@@ -7,3 +7,4 @@
 :command2 : '^[\w\-]+:[\w\-]+\([A-Z]+\)'
 :enable_password : 'DO_NOT_USE_FOR_SSG'
 :enable_command: '' # none
+:console_server_return : "Escape\\scharacter\\sis\\s'\\^\\]'."
