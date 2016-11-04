@@ -37,6 +37,8 @@ module Expectacle
       # logger
       @logger = Logger.new(logger)
       setup_default_logger
+      # check if exit command was recieved
+      @recieved_exit
     end
 
     # Path to prompt file directory.
@@ -87,6 +89,7 @@ module Expectacle
     def do_on_interactive_process
       until @reader.eof?
         @reader.expect(expect_regexp, @timeout) do |match|
+          return if @recieved_exit
           yield match
         end
       end
@@ -98,6 +101,7 @@ module Expectacle
     def open_interactive_process(spawn_cmd)
       @logger.info "Begin spawn: #{spawn_cmd}"
       PTY.spawn(spawn_cmd) do |reader, writer, _pid|
+        @recieved_exit = false
         @enable_mode = false
         @reader = reader
         @writer = writer
@@ -154,6 +158,7 @@ module Expectacle
       logging_message = secret ? message : message + command
       @logger.info logging_message
       @writer.puts command
+      @recieved_exit = command == 'exit'
     end
 
     def check_embed_envvar(command)
