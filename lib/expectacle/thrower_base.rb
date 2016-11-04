@@ -86,10 +86,11 @@ module Expectacle
       end
     end
 
+
     def do_on_interactive_process
       until @reader.eof?
         @reader.expect(expect_regexp, @timeout) do |match|
-          return if @recieved_exit
+          return if @recieved_exit and not match.include?(@prompt[:yn][:match])
           yield match
         end
       end
