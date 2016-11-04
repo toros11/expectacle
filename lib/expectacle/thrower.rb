@@ -109,9 +109,9 @@ module Expectacle
 
     def exec_by_sub_prompt(prompt)
       case prompt
-      when /#{@prompt[:yn]}/
+      when /#{@prompt[:yn][:match]}/
         # it must match before sub_prompt
-        write_and_logging 'Send yes: ', 'yes'
+        write_and_logging 'Send yes: ', @prompt[:yn][:y]
       when /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@console_server_return}/
         write_and_logging 'Send return: ', ''
       end
@@ -126,7 +126,7 @@ module Expectacle
         write_and_logging 'Send username: ', embed_user_name
       when /#{@prompt[:command2]}/, /#{@prompt[:command1]}/
         exec_by_mode(prompt)
-      when /#{@prompt[:yn]}/, /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@console_server_return}/
+      when /#{@prompt[:yn][:match]}/, /#{@prompt[:sub1]}/, /#{@prompt[:sub2]}/ , /#{@console_server_return}/
         exec_by_sub_prompt(prompt)
       else
         @logger.error "Unknown prompt #{prompt}"
