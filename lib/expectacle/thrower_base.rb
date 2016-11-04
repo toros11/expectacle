@@ -90,8 +90,17 @@ module Expectacle
     def do_on_interactive_process
       until @reader.eof?
         @reader.expect(expect_regexp, @timeout) do |match|
-          return if @recieved_exit and not match.include?(@prompt[:yn][:match])
-          yield match
+          if @recieved_exit
+            case match[1]
+            when /#{@prompt[:yn][:match]}/ then
+              yield match
+              @recieved_exit = true
+            when /#{@prompt[:username]}/ then
+              return
+            end
+          end
+
+          yield match unless @recieved_exit
         end
       end
     rescue Errno::EIO => error
