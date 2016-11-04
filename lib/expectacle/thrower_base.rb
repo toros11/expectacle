@@ -164,10 +164,16 @@ module Expectacle
       /x
     end
 
-    def write_and_logging(message, command, secret = false)
+    def write_and_logging(message, command, secret = false, yes_no_prompt = false)
       logging_message = secret ? message : message + command
       @logger.info logging_message
-      @writer.puts command
+
+      if yes_no_prompt
+        @writer.print command
+      else
+        @writer.puts command
+      end
+
       @recieved_exit = command == 'exit'
     end
 
