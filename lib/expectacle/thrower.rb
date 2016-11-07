@@ -111,10 +111,12 @@ module Expectacle
       case prompt
       when /#{@prompt[:yn][:match]}/
         # it must match before sub_prompt
-        reply = case @commands.shift
+        reply = case @commands[0]
                 when 'n', 'no' then
+                  @commands.shift
                   :n
                 when 'y', 'yes' then
+                  @commands.shift
                   :y
                 else
                   :y
