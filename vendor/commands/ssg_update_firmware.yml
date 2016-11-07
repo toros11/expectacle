@@ -1,0 +1,6 @@
+- 'save software from tftp <%= @host_param[:tftp_server] %> ssg5ssg20.6.1.0r7.0 to flash'
+- 'unset all'
+- 'y'
+- 'reset'
+- 'n'
+- 'y'
