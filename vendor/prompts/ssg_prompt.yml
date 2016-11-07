@@ -3,11 +3,11 @@
 :sub1 : 'DO_NOT_USE_FOR_SSG'
 :sub2 : 'DO_NOT_USE_FOR_SSG'
 :yn :
-  :match : '\[y\]\/n|y\/\[n\]:'
+  :match : '\[y\]\/n|y\/\[n\]'
   :y : 'y'
   :n : 'n'
 :command1 : 'DO_NOT_USE_FOR_SSG'
-:command2 : 'ssg'
+:command2 : '^ssg5\-isdn\-\>'
 :enable_password : 'DO_NOT_USE_FOR_SSG'
 :enable_command: '' # none
 :console_server_return : "Escape\\scharacter\\sis\\s'\\^\\]'."
