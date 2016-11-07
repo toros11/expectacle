@@ -159,7 +159,7 @@ module Expectacle
         | #{@prompt[:username]}
         | #{@prompt[:command1]} | #{@prompt[:command2]}
         | #{@prompt[:sub1]} | #{@prompt[:sub2]}
-        | #{@prompt[:yn][:match]} | #{@consol_server_return}
+        | #{@prompt[:yn][:match]} | #{@prompt[:console_server_return]}
         )\s*$
       /x
     end
